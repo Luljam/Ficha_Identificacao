@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -8,15 +10,15 @@ namespace id.Persistence
 {
     public class Conexao
     {
-        protected SqlConnection Cnn;
-        protected SqlCommand Comm;
-        protected SqlDataReader Dr;
+        protected MySqlConnection Cnn;
+        protected MySqlCommand Comm;
+        protected MySqlDataReader Dr;
 
         protected void AbrirConexao()
         {
             try
             {
-                Cnn = new SqlConnection("");
+                Cnn = new MySqlConnection(ConfigurationManager.ConnectionStrings["iDConnectionString"].ToString());
                 Cnn.Open();
             }
             catch (Exception ex)

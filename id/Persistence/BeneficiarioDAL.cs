@@ -1,4 +1,5 @@
 ﻿using id.Funcionario;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,10 +15,10 @@ namespace id.Persistence
             try
             {
                 AbrirConexao();
-                Comm = new SqlCommand("INSERT INTO tabela (nome, matricula, rf) VALUE (@v1, @v2, @v3)", Cnn);
-                Comm.Parameters.AddWithValue("@v1",beneficiario.Nome);
-                Comm.Parameters.AddWithValue("@v2", beneficiario.Prontuario);
-                Comm.Parameters.AddWithValue("@v1", beneficiario.Matricula);
+                Comm = new MySqlCommand("INSERT INTO beneficiario (prontuario, nome, matricula) VALUE (@v1, @v2, @v3)", Cnn);
+                Comm.Parameters.AddWithValue("@v1", beneficiario.Prontuario);
+                Comm.Parameters.AddWithValue("@v2",beneficiario.Nome);
+                Comm.Parameters.AddWithValue("@v3", beneficiario.Matricula);
 
 
                 Comm.ExecuteNonQuery();
@@ -38,7 +39,7 @@ namespace id.Persistence
             try
             {
                 AbrirConexao();
-                Comm = new SqlCommand("SELECT * FROM beneficiario WHERE prontuario = @v1", Cnn);
+                Comm = new MySqlCommand("SELECT * FROM beneficiario WHERE prontuario = @v1", Cnn);
                 Comm.Parameters.AddWithValue("@v1", prontuario);
 
                 Beneficiario beneficiario = null;

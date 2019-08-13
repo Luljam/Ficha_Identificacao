@@ -5,7 +5,7 @@ namespace id.Funcionario
     public class Beneficiario : Pessoa
 
     {
-
+        public int Matricula { get; set; }
         public int Prontuario { get; set; }
         public string Sexo { get; set; }
         public DateTime DataNascimento { get; set; }
